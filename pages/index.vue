@@ -25,9 +25,12 @@
         },
     };
     const response = await fetch(runtimeConfig.baseURL+'/api/articles?populate=*', {headers: {
-        'Access-Control-Allow-Origin' : '*'
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': "GET,HEAD,OPTIONS,POST,PUT",
+        'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept, Authorization"
     }});
-    const articleData = ref<articleInterface[]>();
+
+   const articleData = ref<articleInterface[]>();
 
     articleData.value = (await response.json()).data;
     console.log('articleData : ', articleData.value);
