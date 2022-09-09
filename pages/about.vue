@@ -50,7 +50,6 @@
 
     const baseURL :string = runtimeConfig.baseURL;
     const response = await fetch(baseURL+"/api/about?populate=*", {headers: {
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
         "Access-Control-Allow-Origin": "https://mariesophie-book.vercel.app",
         "Access-Control-Allow-Methods": "*",
     }});
