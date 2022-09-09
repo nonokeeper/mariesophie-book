@@ -50,9 +50,9 @@
 
     const baseURL :string = runtimeConfig.baseURL;
     const response = await fetch(baseURL+"/api/about?populate=*", {headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': "GET,HEAD,OPTIONS,POST,PUT",
-        'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
     }});
     
     aboutData.value = (await response.json()).data.attributes;
