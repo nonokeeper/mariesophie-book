@@ -49,7 +49,9 @@
     const aboutData = ref<aboutInterface>();
 
     const baseURL :string = runtimeConfig.baseURL;
-    const response = await fetch(baseURL+"/api/about?populate=*");
+    const response = await fetch(baseURL+"/api/about?populate=*", {headers: {
+        'Access-Control-Allow-Origin' : '*'
+    }});
     
     aboutData.value = (await response.json()).data.attributes;
     console.log('aboutData : ', aboutData.value);

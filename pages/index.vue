@@ -24,7 +24,9 @@
             content:String
         },
     };
-    const response = await fetch(runtimeConfig.baseURL+'/api/articles?populate=*');
+    const response = await fetch(runtimeConfig.baseURL+'/api/articles?populate=*', {headers: {
+        'Access-Control-Allow-Origin' : '*'
+    }});
     const articleData = ref<articleInterface[]>();
 
     articleData.value = (await response.json()).data;
