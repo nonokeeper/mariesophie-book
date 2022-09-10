@@ -17,6 +17,12 @@
 <script setup lang="ts">
     const runtimeConfig = useRuntimeConfig();
 
+    const url = ref(runtimeConfig.baseURL+"/api/articles?populate=*");
+    console.log('url : ',url.value);
+
+    const { data: res } = await useFetch(url);
+    console.log('data useFetch : ',res.value);
+
     interface articleInterface {
         id:number,
         attributes: {
@@ -24,11 +30,10 @@
             content:String
         },
     };
-    const response = await fetch(runtimeConfig.baseURL+'/api/articles?populate=*', {mode: "no-cors"});
 
    const articleData = ref<articleInterface[]>();
 
-    articleData.value = (await response.json()).data;
+    articleData.value = res.value?.data;
     console.log('articleData : ', articleData.value);
 
 </script>
