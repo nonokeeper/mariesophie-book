@@ -19,13 +19,17 @@
 
 </template>
 
-<script setup lang="ts">
+<script setup>
+
     const more = ref(false);
+    const aboutData = ref('');
     const moreText = ref('');
     const hideText = ref('');
     const runtimeConfig = useRuntimeConfig();
-    console.log('baseURL : ',runtimeConfig.baseURL);
-
+    const baseURL = runtimeConfig.baseURL;
+    const url = ref(baseURL+"/api/about?populate=*");
+    console.log('url : ',url.value);
+/*
     interface aboutInterface {
         title:string,
         subTitle:string,
@@ -51,15 +55,43 @@
 
     const aboutData = ref<aboutInterface>();
 
-    const baseURL :string = runtimeConfig.baseURL;
-    const response = await fetch(baseURL+"/api/about?populate=*", {mode: "no-cors"});
+    /*
+    const test = ref('');
+    fetch(url.value, {mode: "no-cors"}).then((response) => {
+        return response.json().then((json=> {
+            test.value = json;
+            console.log('test : ', test);
+        }))
+    });
+
+
+    fetch(url.value, {mode: "no-cors"})
+        .then(response => response.json())
+        .then(data => {
+            aboutData.value = data?.attributes;
+            console.log('aboutData : ', aboutData.value);
+        });
     
-    aboutData.value = (await response.json())?.data?.attributes;
-    console.log('aboutData : ', aboutData.value);
+*/
+    var response = await fetch(baseURL+"/api/about?populate=*", {mode: "no-cors"});
+    var res = await response.json();
+    console.log('res data : ', res?.data);
+    aboutData.value = res?.data?.attributes;
+/*    
+    try {
+        console.log('try response', response.blob());
+        response.json().then((resp) => {
+            aboutData.value = resp?.data?.attributes;
+            console.log('aboutData : ', aboutData.value);
+        });
+    } catch (err) {
+    // 👇️ SyntaxError: Unexpected end of JSON input
+    console.log('error', err);
+    }
+*/
     if (aboutData.value) {
         moreText.value = aboutData.value.moreText;
         hideText.value = aboutData.value.hideText;
     }
-    
 
 </script>
