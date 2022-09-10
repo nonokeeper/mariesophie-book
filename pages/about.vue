@@ -4,7 +4,7 @@
 
         <div class="mt-8 grid place-items-center">
             <div>
-                <img class="rounded-full w-44" :src="baseURL + aboutData.profile.data.attributes.url"/>
+                <img class="rounded-full w-44" :src="baseURL + aboutData?.profile.data.attributes.url"/>
             </div>
             <div class="font-bold">{{ aboutData?.title }}</div>
             <div class="font-light text-sm">{{ aboutData?.subTitle }}</div>
@@ -20,6 +20,9 @@
 </template>
 
 <script setup lang="ts">
+    const more = ref(false);
+    const moreText = ref('');
+    const hideText = ref('');
     const runtimeConfig = useRuntimeConfig();
     console.log('baseURL : ',runtimeConfig.baseURL);
 
@@ -49,15 +52,14 @@
     const aboutData = ref<aboutInterface>();
 
     const baseURL :string = runtimeConfig.baseURL;
-    const response = await fetch(baseURL+"/api/about?populate=*", {headers: {
-        "Access-Control-Allow-Origin": "https://mariesophie-book.vercel.app",
-        "Access-Control-Allow-Methods": "*",
-    }});
+    const response = await fetch(baseURL+"/api/about?populate=*");
     
-    aboutData.value = (await response.json()).data.attributes;
+    aboutData.value = (await response.json())?.data?.attributes;
     console.log('aboutData : ', aboutData.value);
-    const moreText : string = aboutData.value.moreText;
-    const hideText : string = aboutData.value.hideText;
-    const more = ref(false);
+    if (aboutData.value) {
+        moreText.value = aboutData.value.moreText;
+        hideText.value = aboutData.value.hideText;
+    }
+    
 
 </script>

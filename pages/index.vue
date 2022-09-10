@@ -24,10 +24,7 @@
             content:String
         },
     };
-    const response = await fetch(runtimeConfig.baseURL+'/api/articles?populate=*', {headers: {
-        "Access-Control-Allow-Origin": "https://mariesophie-book.vercel.app",
-        "Access-Control-Allow-Methods": "*",
-    }});
+    const response = await fetch(runtimeConfig.baseURL+'/api/articles?populate=*');
 
    const articleData = ref<articleInterface[]>();
 
