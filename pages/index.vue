@@ -24,7 +24,7 @@
             content:String
         },
     };
-    const response = await fetch(runtimeConfig.baseURL+'/api/articles?populate=*');
+    const response = await fetch(runtimeConfig.baseURL+'/api/articles?populate=*', {mode: "no-cors"});
 
    const articleData = ref<articleInterface[]>();
 
