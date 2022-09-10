@@ -29,6 +29,14 @@
     const baseURL = runtimeConfig.baseURL;
     const url = ref(baseURL+"/api/about?populate=*");
     console.log('url : ',url.value);
+
+    const { data: res } = await useFetch(url);
+    console.log('data useFetch : ',res.value);
+
+    aboutData.value = res.value?.data?.attributes;
+
+    console.log('profile image url : ',baseURL + aboutData.value?.profile.data.attributes.url);
+
 /*
     interface aboutInterface {
         title:string,
@@ -72,7 +80,7 @@
             console.log('aboutData : ', aboutData.value);
         });
     
-*/
+
     var response = await fetch(baseURL+"/api/about?populate=*", {mode: "no-cors"});
     var res = await response.json();
     console.log('res data : ', res?.data);

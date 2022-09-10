@@ -8,9 +8,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       //baseURL: 'http://localhost:1338'
-      baseURL: 'https://b229-92-88-6-192.eu.ngrok.io'
+      baseURL: 'https://27d1-92-88-6-192.eu.ngrok.io'
     }
   },
+
   /*
   modules: ['nuxt-graphql-client'],
   
