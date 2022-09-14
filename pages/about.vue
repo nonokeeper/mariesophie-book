@@ -31,72 +31,12 @@
     console.log('url : ',url.value);
 
     const { data: res } = await useFetch(url);
-    console.log('data useFetch : ',res.value);
+    //console.log('data useFetch : ',res.value);
 
     aboutData.value = res.value?.data?.attributes;
 
-    console.log('profile image url : ',baseURL + aboutData.value?.profile.data.attributes.url);
+    //console.log('profile image url : ',baseURL + aboutData.value?.profile.data.attributes.url);
 
-/*
-    interface aboutInterface {
-        title:string,
-        subTitle:string,
-        content:string,
-        moreText:string,
-        hideText:string,
-        moreContent:string,
-        profile: {
-            data: {
-                id:number,
-                attributes: {
-                    url:string,
-                    name:string,
-                    formats: {
-                        thumbnail: {
-                            url:string
-                        }
-                    }
-                }
-            }
-        }
-    };
-
-    const aboutData = ref<aboutInterface>();
-
-    /*
-    const test = ref('');
-    fetch(url.value, {mode: "no-cors"}).then((response) => {
-        return response.json().then((json=> {
-            test.value = json;
-            console.log('test : ', test);
-        }))
-    });
-
-
-    fetch(url.value, {mode: "no-cors"})
-        .then(response => response.json())
-        .then(data => {
-            aboutData.value = data?.attributes;
-            console.log('aboutData : ', aboutData.value);
-        });
-    
-
-    var response = await fetch(baseURL+"/api/about?populate=*", {mode: "no-cors"});
-    var res = await response.json();
-    console.log('res data : ', res?.data);
-    aboutData.value = res?.data?.attributes;
-/*    
-    try {
-        console.log('try response', response.blob());
-        response.json().then((resp) => {
-            aboutData.value = resp?.data?.attributes;
-            console.log('aboutData : ', aboutData.value);
-        });
-    } catch (err) {
-    // 👇️ SyntaxError: Unexpected end of JSON input
-    console.log('error', err);
-    }
-*/
     if (aboutData.value) {
         moreText.value = aboutData.value.moreText;
         hideText.value = aboutData.value.hideText;
