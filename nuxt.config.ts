@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       //baseURL: 'http://localhost:1338'
-      baseURL: 'https://9a24-92-88-6-192.eu.ngrok.io'
+      baseURL: 'https://3ed3-92-88-6-192.eu.ngrok.io'
     }
   },
 
